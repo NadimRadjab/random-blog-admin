@@ -1,0 +1,13 @@
+.navbar {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  border: 2px solid gray;
+}
+.title {
+  margin-left: 20rem;
+  font-size: 30px;
+}
+.title:hover {
+  text-decoration: none;
+}
