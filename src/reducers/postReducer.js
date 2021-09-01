@@ -9,6 +9,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.payload),
+      };
     default:
       return state;
   }
