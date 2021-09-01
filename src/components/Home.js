@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Badge, Box } from "@chakra-ui/react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
+import { CloseIcon } from "@chakra-ui/icons";
+import { connect } from "react-redux";
+import { getPosts } from "../actions/postActions";
+import PropTypes from "prop-types";
 
-const Home = () => {
+const Home = ({ getPosts, post }) => {
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
+
   return (
     <Container className="grid">
       <Link to="/post/:id">
@@ -14,6 +22,7 @@ const Home = () => {
           borderRadius="lg"
           overflow="hidden"
         >
+          <CloseIcon m={2} />
           <Box p="6">
             <Box d="flex" alignItems="baseline">
               <Badge borderRadius="full" px="2" colorScheme="teal">
@@ -87,4 +96,13 @@ const Home = () => {
     </Container>
   );
 };
-export default Home;
+
+Home.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+export default connect(mapStateToProps, { getPosts })(Home);

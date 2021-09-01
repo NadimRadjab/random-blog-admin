@@ -4,13 +4,13 @@ import "../styles/navbar.css";
 
 const Navbar = () => {
   return (
-    <navbar className="navbar">
+    <div className="navbar">
       <LinkBox>
         <LinkOverlay href="/">
           <h1 className="title">Random Blog</h1>
         </LinkOverlay>
       </LinkBox>
-    </navbar>
+    </div>
   );
 };
 export default Navbar;
