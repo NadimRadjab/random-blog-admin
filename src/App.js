@@ -16,7 +16,11 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <LoginForm />} />
           <Route exact path="/home" render={() => <Home />} />
-          <Route exact path="/post/:id" render={() => <Post />} />
+          <Route
+            exact
+            path="/post/:id"
+            render={(...routeProps) => <Post routeProps={routeProps} />}
+          />
         </Switch>
         <Footer />
       </div>

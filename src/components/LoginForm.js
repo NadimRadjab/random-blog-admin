@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 
 const LoginForm = () => {
-  const [username, setUsername, resetUsername] = useFormState("");
-  const [password, setPasswrod, resetPassword] = useFormState("");
+  const [username, setUsername] = useFormState("");
+  const [password, setPasswrod] = useFormState("");
   const handleSubmit = (e) => {
     e.preventDefault();
   };

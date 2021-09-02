@@ -1,6 +1,17 @@
-import { GET_POSTS, ADD_POST, DELETE_POST } from "../actions/types";
+import {
+  GET_POSTS,
+  GET_POST,
+  ADD_POST,
+  DELETE_POST,
+  UPDATE_POST,
+  POSTS_LOADING,
+  DELETE_COMMENT,
+} from "../actions/types";
 const initialState = {
-  posts: [{ id: "1", name: "Hello" }],
+  posts: [],
+  post: [],
+  comments: [],
+  loading: false,
 };
 
 export default function (state = initialState, action) {
@@ -8,6 +19,15 @@ export default function (state = initialState, action) {
     case GET_POSTS:
       return {
         ...state,
+        posts: action.payload,
+        loading: false,
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: action.payload,
+        comments: action.payload.comments,
+        loading: false,
       };
     case ADD_POST:
       return {
@@ -17,7 +37,28 @@ export default function (state = initialState, action) {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload),
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
+    case UPDATE_POST:
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post._id === action.payload.id
+            ? { ...post, name: action.payload.name, text: action.payload.text }
+            : post
+        ),
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.filter(
+          (comment) => comment._id !== action.payload
+        ),
+      };
+    case POSTS_LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;

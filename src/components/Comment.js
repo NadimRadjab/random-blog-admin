@@ -1,7 +1,12 @@
 import { Box, Badge } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
+import { connect } from "react-redux";
+import { deleteComment } from "../actions/postActions";
 
-const Comment = () => {
+const Comment = ({ postId, comment, deleteComment }) => {
+  const handleDelete = () => {
+    deleteComment(postId, comment._id);
+  };
   return (
     <Box
       mt="3"
@@ -11,7 +16,7 @@ const Comment = () => {
       borderRadius="lg"
       overflow="hidden"
     >
-      <CloseIcon ml={3} />
+      <CloseIcon onClick={handleDelete} ml={3} />
       <Box p="6">
         <Box d="flex">
           <Badge
@@ -21,7 +26,7 @@ const Comment = () => {
             px="3"
             colorScheme="gray"
           >
-            name
+            {comment.authorname}
           </Badge>
 
           <Box
@@ -32,18 +37,20 @@ const Comment = () => {
             textTransform="uppercase"
             ml="2"
           >
-            date
-            {/* {new Date(comment.creationDate).toUTCString().substr(0, 17)} */}
+            {new Date(comment.creationDate).toUTCString().substr(0, 17)}
           </Box>
         </Box>
 
         <Box d="flex" mt="5" alignItems="center">
           <Box as="span" ml="2" color="gray.800" fontSize="sm">
-            text
+            {comment.text}
           </Box>
         </Box>
       </Box>
     </Box>
   );
 };
-export default Comment;
+const mapStateToProps = (state) => ({
+  singlePost: state.post,
+});
+export default connect(mapStateToProps, { deleteComment })(Comment);

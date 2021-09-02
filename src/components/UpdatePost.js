@@ -15,30 +15,25 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { connect } from "react-redux";
-import { addPost } from "../actions/postActions";
+import { updatePost } from "../actions/postActions";
 import useFormState from "../hooks/useFormState";
 
-function NewPost({ addPost }) {
+function UpdatePost({ updatePost, id, title, description }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [name, setName, resetName] = useFormState("");
-  const [text, setText, resetText] = useFormState("");
+  const [name, setName] = useFormState(title);
+  const [text, setText] = useFormState(description);
   const initialRef = React.useRef();
   const finalRef = React.useRef();
   const onSubmit = (e) => {
     e.preventDefault();
-    const newPost = {
-      name,
-      text,
-    };
-    addPost(newPost);
-    resetName();
-    resetText();
+
+    updatePost(id, name, text);
     onClose();
   };
   return (
     <div>
       <>
-        <Button onClick={onOpen}>Make a New Post</Button>
+        <Button onClick={onOpen}>Edit Post</Button>
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
@@ -48,7 +43,7 @@ function NewPost({ addPost }) {
           <ModalOverlay />
           <ModalContent>
             <form onSubmit={onSubmit}>
-              <ModalHeader>Create a New Post</ModalHeader>
+              <ModalHeader>Update a Post</ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
                 <FormControl>
@@ -90,4 +85,4 @@ function NewPost({ addPost }) {
 const mapStateToProps = (state) => ({
   post: state.post,
 });
-export default connect(mapStateToProps, { addPost })(NewPost);
+export default connect(mapStateToProps, { updatePost })(UpdatePost);

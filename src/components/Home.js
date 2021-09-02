@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getPosts, deletePost } from "../actions/postActions";
 import PropTypes from "prop-types";
 import NewPost from "./NewPost";
+import UpdatePost from "./UpdatePost";
 
 const Home = ({ getPosts, post, deletePost }) => {
   useEffect(() => {
@@ -17,24 +18,24 @@ const Home = ({ getPosts, post, deletePost }) => {
     deletePost(id);
   };
   return (
-    <>
+    <Container>
       <NewPost />
       <Container className="grid">
         {post.posts.map((p) => (
           <Box
-            key={p.id}
+            key={p._id}
             className="card"
             maxW="sm"
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
           >
-            <CloseIcon onClick={deletePosts.bind(this, p.id)} m={2} />
+            <CloseIcon onClick={deletePosts.bind(this, p._id)} m={2} />
 
             <Box p="6">
               <Box d="flex" alignItems="baseline">
                 <Badge borderRadius="full" px="2" colorScheme="teal">
-                  Name
+                  {p.name}
                 </Badge>
                 <Box
                   color="gray.500"
@@ -55,7 +56,7 @@ const Home = ({ getPosts, post, deletePost }) => {
                 lineHeight="tight"
                 isTruncated
               >
-                Text
+                {p.text}
               </Box>
 
               <Box d="flex" mt="2" alignItems="center">
@@ -64,17 +65,19 @@ const Home = ({ getPosts, post, deletePost }) => {
                 </Box>
               </Box>
             </Box>
-            <Box m="10">
+            <Box d="flex" m="10" justifyContent="space-evenly">
               <Button bg="teal" color="white">
-                <Link mr="2" to={`/post/${p.id}`}>
+                <Link mr="2" to={`/post/${p._id}`}>
                   View Post
                 </Link>
               </Button>
+
+              <UpdatePost title={p.name} description={p.text} id={p._id} />
             </Box>
           </Box>
         ))}
       </Container>
-    </>
+    </Container>
   );
 };
 
