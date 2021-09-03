@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LoginForm from "./components/LoginForm";
@@ -7,8 +8,12 @@ import Post from "./components/Post";
 import { Route, Switch } from "react-router-dom";
 import store from "./store";
 import { Provider } from "react-redux";
+import { loadUser } from "./actions/authActions";
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Provider store={store}>
       <div className="App">
