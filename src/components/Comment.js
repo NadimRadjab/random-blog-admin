@@ -1,5 +1,4 @@
-import { Box, Badge } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
+import { Box, Badge, CloseButton } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import { deleteComment } from "../actions/postActions";
 
@@ -16,7 +15,7 @@ const Comment = ({ postId, comment, deleteComment }) => {
       borderRadius="lg"
       overflow="hidden"
     >
-      <CloseIcon onClick={handleDelete} ml={3} />
+      <CloseButton mt="2" onClick={handleDelete} ml={3} />
       <Box p="6">
         <Box d="flex">
           <Badge

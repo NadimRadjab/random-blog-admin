@@ -1,19 +1,29 @@
 import React from "react";
-import { LinkOverlay, LinkBox } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import "../styles/navbar.css";
 import Logout from "./Logout";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import NewPost from "./NewPost";
+import { NavLink } from "react-router-dom";
 
 const Navbar = ({ auth }) => {
   return (
     <div className="navbar">
-      <LinkBox>
-        <LinkOverlay href="/">
-          <h1 className="title">Random Blog</h1>
-        </LinkOverlay>
-        {auth.isAuthenticated === null ? "" : <Logout />}
-      </LinkBox>
+      <NavLink to="/home">
+        <h1 className="title">Random Blog</h1>
+      </NavLink>
+
+      {auth.isAuthenticated === null ? (
+        ""
+      ) : (
+        <div className="links">
+          <NewPost />
+          <Button ml="3" color="white" bg="red">
+            <Logout />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

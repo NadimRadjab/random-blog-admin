@@ -33,7 +33,9 @@ function UpdatePost({ updatePost, id, title, description }) {
   return (
     <div>
       <>
-        <Button onClick={onOpen}>Edit Post</Button>
+        <Button bg="goldenrod" color="white" onClick={onOpen}>
+          Edit Post
+        </Button>
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}

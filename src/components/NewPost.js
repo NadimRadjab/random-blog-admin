@@ -38,7 +38,9 @@ function NewPost({ addPost }) {
   return (
     <div>
       <>
-        <Button onClick={onOpen}>Make a New Post</Button>
+        <Button color="white" bg="teal" onClick={onOpen}>
+          Make a New Post
+        </Button>
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}

@@ -1,28 +1,32 @@
 import React, { useEffect } from "react";
-import { Container, Badge, Box, Button } from "@chakra-ui/react";
+import { Badge, Box, Button, Heading, CloseButton } from "@chakra-ui/react";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
-import { CloseIcon } from "@chakra-ui/icons";
+import { useHistory, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts, deletePost } from "../actions/postActions";
 import PropTypes from "prop-types";
-import NewPost from "./NewPost";
 import UpdatePost from "./UpdatePost";
-import { tokenConfig } from "../actions/authActions";
-import { retrunErrors } from "../actions/errorActions";
 
 const Home = ({ getPosts, post, deletePost }) => {
+  const history = useHistory();
+
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
+  const handleLocation = (id) => {
+    history.push(`/post/${id}`);
+  };
   const deletePosts = (id) => {
     deletePost(id);
   };
+  const isLogged = !!localStorage.getItem("token");
+  if (!isLogged) {
+    return <Redirect to="/" />;
+  }
   return (
-    <Container>
-      <NewPost />
-      <Container className="grid">
+    <div>
+      <div className="grid">
         {post.posts.map((p) => (
           <Box
             key={p._id}
@@ -32,54 +36,60 @@ const Home = ({ getPosts, post, deletePost }) => {
             borderRadius="lg"
             overflow="hidden"
           >
-            <CloseIcon onClick={deletePosts.bind(this, p._id)} m={2} />
+            <CloseButton
+              size="md"
+              onClick={deletePosts.bind(this, p._id)}
+              m={2}
+            />
 
             <Box p="6">
               <Box d="flex" alignItems="baseline">
                 <Badge borderRadius="full" px="2" colorScheme="teal">
-                  {p.name}
+                  <Heading fontSize="20">{p.name.substr(0, 7)}...</Heading>
                 </Badge>
                 <Box
                   color="gray.500"
                   fontWeight="semibold"
                   letterSpacing="wide"
-                  fontSize="xs"
-                  textTransform="uppercase"
-                  ml="2"
+                  fontSize="md"
+                  ml="5"
                 >
-                  Author
+                  <p>Made by:</p> {p.author.username}
                 </Box>
               </Box>
 
               <Box
-                mt="1"
+                mt="3"
                 fontWeight="semibold"
                 as="h4"
                 lineHeight="tight"
                 isTruncated
               >
-                {p.text}
+                {p.text.substr(0.2)}...
               </Box>
 
               <Box d="flex" mt="2" alignItems="center">
                 <Box as="span" ml="2" color="gray.600" fontSize="sm">
-                  Date
+                  {new Date(p.creationDate).toUTCString().substr(0, 17)}
                 </Box>
               </Box>
             </Box>
             <Box d="flex" m="10" justifyContent="space-evenly">
-              <Button bg="teal" color="white">
-                <Link mr="2" to={`/post/${p._id}`}>
-                  View Post
-                </Link>
+              <Button
+                color="white"
+                bg="teal"
+                mr="2"
+                onClick={handleLocation.bind(this, p._id)}
+              >
+                View Post
               </Button>
 
               <UpdatePost title={p.name} description={p.text} id={p._id} />
             </Box>
           </Box>
         ))}
-      </Container>
-    </Container>
+      </div>
+    </div>
   );
 };
 
