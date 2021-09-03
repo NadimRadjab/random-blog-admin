@@ -8,6 +8,8 @@ import { getPosts, deletePost } from "../actions/postActions";
 import PropTypes from "prop-types";
 import NewPost from "./NewPost";
 import UpdatePost from "./UpdatePost";
+import { tokenConfig } from "../actions/authActions";
+import { retrunErrors } from "../actions/errorActions";
 
 const Home = ({ getPosts, post, deletePost }) => {
   useEffect(() => {

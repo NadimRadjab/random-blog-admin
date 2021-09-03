@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFormState from "../hooks/useFormState";
+import { Redirect, useHistory } from "react-router-dom";
 import {
   Container,
   FormControl,
@@ -8,8 +9,6 @@ import {
   Button,
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -20,6 +19,7 @@ const LoginForm = ({ login, error, isAuthenticated }) => {
   const [username, setUsername] = useFormState("");
   const [password, setPasswrod] = useFormState("");
   const [msg, setMsg] = useState(null);
+  let history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = {
@@ -34,6 +34,9 @@ const LoginForm = ({ login, error, isAuthenticated }) => {
       setMsg(error.msg.msg);
     } else {
       setMsg(null);
+    }
+    if (isAuthenticated) {
+      history.push("/home");
     }
   }, [isAuthenticated, error, login]);
   return (

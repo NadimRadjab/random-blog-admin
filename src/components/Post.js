@@ -27,11 +27,6 @@ function Post({ singlePost, getPost, routeProps }) {
             {singlePost.comments.map((comment) => (
               <Comment postId={id} key={comment._id} comment={comment} />
             ))}
-            {/* {singlePost.post.comments === undefined
-              ? null
-              : singlePost.post.comments.map((comment) => (
-                  <Comment postId={id} key={comment._id} comment={comment} />
-                ))} */}
           </Container>
         </Container>
       </div>
