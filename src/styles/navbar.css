@@ -20,3 +20,13 @@
 .links {
   display: flex;
 }
+
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 20px;
+  }
+  .links button {
+    width: 90px;
+    font-size: 11px;
+  }
+}

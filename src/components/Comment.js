@@ -10,7 +10,7 @@ const Comment = ({ postId, comment, deleteComment }) => {
     <Box
       mt="3"
       maxW="xl"
-      width="600px"
+      w={[300, 400, 500, 600]}
       borderWidth="2px"
       borderRadius="lg"
       overflow="hidden"
