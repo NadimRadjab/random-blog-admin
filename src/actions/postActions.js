@@ -14,7 +14,7 @@ import { retrunErrors } from "../actions/errorActions";
 export const getPosts = () => (dispatch) => {
   dispatch(setPostsLoading());
   axios
-    .get("http://localhost:5000/api/posts")
+    .get("https://powerful-castle-69788.herokuapp.com/api/posts")
     .then((res) =>
       dispatch({
         type: GET_POSTS,
@@ -28,7 +28,7 @@ export const getPosts = () => (dispatch) => {
 export const getPost = (id) => (dispatch) => {
   dispatch(setPostsLoading());
   axios
-    .get(`http://localhost:5000/api/posts/${id}`)
+    .get(`https://powerful-castle-69788.herokuapp.com/api/posts/${id}`)
     .then((res) =>
       dispatch({
         type: GET_POST,
@@ -41,7 +41,11 @@ export const getPost = (id) => (dispatch) => {
 };
 export const addPost = (post) => (dispatch, getState) => {
   axios
-    .post("http://localhost:5000/api/posts", post, tokenConfig(getState))
+    .post(
+      "https://powerful-castle-69788.herokuapp.com/api/posts",
+      post,
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: ADD_POST,
@@ -55,7 +59,10 @@ export const addPost = (post) => (dispatch, getState) => {
 
 export const deletePost = (id) => (dispatch, getState) => {
   axios
-    .delete(`http://localhost:5000/api/posts/${id}`, tokenConfig(getState))
+    .delete(
+      `https://powerful-castle-69788.herokuapp.com/api/posts/${id}`,
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: DELETE_POST,
@@ -68,10 +75,9 @@ export const deletePost = (id) => (dispatch, getState) => {
 };
 
 export const updatePost = (id, name, text) => (dispatch, getState) => {
-  console.log(id);
   axios
     .post(
-      `http://localhost:5000/api/posts/${id}`,
+      `https://powerful-castle-69788.herokuapp.com/api/posts/${id}`,
       { name, text },
       tokenConfig(getState)
     )
@@ -86,10 +92,9 @@ export const updatePost = (id, name, text) => (dispatch, getState) => {
     });
 };
 export const deleteComment = (id, commentId) => (dispatch, getState) => {
-  console.log(commentId);
   axios
     .delete(
-      `http://localhost:5000/api/posts/${id}/comments/${commentId}`,
+      `https://powerful-castle-69788.herokuapp.com/api/posts/${id}/comments/${commentId}`,
       tokenConfig(getState)
     )
     .then((res) =>

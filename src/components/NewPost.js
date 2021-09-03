@@ -56,6 +56,7 @@ function NewPost({ addPost }) {
                 <FormControl>
                   <FormLabel>Title</FormLabel>
                   <Input
+                    required
                     type="text"
                     onChange={setName}
                     value={name}
@@ -67,6 +68,7 @@ function NewPost({ addPost }) {
                 <FormControl mt={4}>
                   <FormLabel>Text</FormLabel>
                   <Textarea
+                    required
                     size="lg"
                     name="text"
                     onChange={setText}

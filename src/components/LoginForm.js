@@ -64,6 +64,7 @@ const LoginForm = ({ login, error, isAuthenticated }) => {
           <FormControl id="username">
             <FormLabel>Username</FormLabel>
             <Input
+              required
               onChange={setUsername}
               name="username"
               value={username}
@@ -74,6 +75,7 @@ const LoginForm = ({ login, error, isAuthenticated }) => {
           <FormControl mt="2" id="password">
             <FormLabel>Password</FormLabel>
             <Input
+              required
               onChange={setPasswrod}
               name="password"
               value={password}

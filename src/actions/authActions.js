@@ -14,7 +14,10 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("http://localhost:5000/api/user", tokenConfig(getState))
+    .get(
+      "https://powerful-castle-69788.herokuapp.com/api/user",
+      tokenConfig(getState)
+    )
     .then((res) =>
       dispatch({
         type: USER_LOADED,
@@ -39,7 +42,11 @@ export const login =
     };
     const body = JSON.stringify({ username, password });
     axios
-      .post("http://localhost:5000/api/auth/login", body, config)
+      .post(
+        "https://powerful-castle-69788.herokuapp.com/api/auth/login",
+        body,
+        config
+      )
       .then((res) =>
         dispatch({
           type: LOGIN_SUCCESS,
