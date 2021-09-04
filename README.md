@@ -1,8 +1,11 @@
 # Random Blog
 
-Admin Repo for Random Blog project.
+Admin Repo with CRUD functionality for Random Blog project.
+
 The Repo is live [here.]()
-Visit the Blog backend repo [here.]()
+
+Visit the Blog back-end repo [here.]()
+
 Visit the Blog client repo [here.]()
 
 ## How To Run:
@@ -12,6 +15,7 @@ npm start
 
 ### Made with:
 
-- [Reactjs](https://reactjs.org/)
+- [ReactJs](https://reactjs.org/)
+- [reactrouter](https://reactrouter.com/)
 - [Redux](https://redux.js.org/)
 - [chakra-ui](https://chakra-ui.com/)
