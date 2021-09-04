@@ -2,9 +2,9 @@
 
 Admin Repo with CRUD functionality for Random Blog project.
 
-The Repo is live [here.]()
+The Repo is live [here.](https://nadimradjab.github.io/random-blog-admin/)
 
-Visit the Blog back-end repo [here.]()
+Visit the Blog back-end repo [here.](https://github.com/NadimRadjab/random-blog-backend)
 
 Visit the Blog client repo [here.]()
 
