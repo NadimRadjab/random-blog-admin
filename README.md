@@ -11,6 +11,7 @@ Visit the Blog client repo [here.](https://github.com/NadimRadjab/random-blog-cl
 ## How To Run:
 
 npm install
+
 npm start
 
 ### Made with:
